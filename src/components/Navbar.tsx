@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Volume2, VolumeX, Menu, X, Sparkles } from "lucide-react";
+import { Search, Volume2, VolumeX, Menu, X } from "lucide-react";
 import { CHARACTERS } from "@/data/characters";
 
 interface NavbarProps {
@@ -15,6 +15,7 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,19 +25,39 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const filteredCharacters = CHARACTERS.filter((c) =>
-    c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    c.anime.toLowerCase().includes(searchQuery.toLowerCase())
+  const toggleAudio = () => {
+    if (!audioRef.current) return;
+    if (isPlayingAudio) {
+      audioRef.current.pause();
+      setIsPlayingAudio(false);
+    } else {
+      audioRef.current
+        .play()
+        .then(() => {
+          setIsPlayingAudio(true);
+        })
+        .catch((err) => {
+          console.error("Audio playback error:", err);
+          setIsPlayingAudio(false);
+        });
+    }
+  };
+
+  const filteredCharacters = CHARACTERS.filter(
+    (c) =>
+      c.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.anime.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-6 md:px-12 py-4 ${isScrolled ? "bg-black/70 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3" : "bg-transparent py-6"
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-6 md:px-12 py-4 ${isScrolled
+          ? "bg-black/70 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3"
+          : "bg-transparent py-6"
           }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-
           <a href="#" className="group flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#4f46e5] p-[1px] shadow-[0_0_20px_rgba(255,107,0,0.4)]">
               <div className="w-full h-full bg-[#050505] rounded-[11px] flex items-center justify-center font-bebas text-xl text-white group-hover:bg-gradient-to-br group-hover:from-[#ff6b00] group-hover:to-[#4f46e5] transition-all">
@@ -54,28 +75,45 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
           </a>
 
           <nav className="hidden lg:flex items-center gap-8 glass-panel px-8 py-2.5 rounded-full">
-            <a href="#hero" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#hero"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Home
             </a>
-            <a href="#characters" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#characters"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Characters
             </a>
-            <a href="#power-ranking" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#power-ranking"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Power Ranking
             </a>
-            <a href="#timeline" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#timeline"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Timeline
             </a>
-            <a href="#collections" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#collections"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Collections
             </a>
-            <a href="#gallery" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
+            <a
+              href="#gallery"
+              className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors"
+            >
               Gallery
             </a>
           </nav>
 
           <div className="flex items-center gap-4">
-
             <button
               onClick={() => setIsSearchOpen(true)}
               className="p-2.5 rounded-xl glass-card hover:border-[#ff6b00] text-white/80 hover:text-white transition-all"
@@ -85,13 +123,20 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
             </button>
 
             <button
-              onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-              className={`p-2.5 rounded-xl glass-card transition-all ${isPlayingAudio ? "border-[#ff6b00] text-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.3)]" : "text-white/80"
+              onClick={toggleAudio}
+              className={`p-2.5 rounded-xl glass-card transition-all ${isPlayingAudio
+                ? "border-[#ff6b00] text-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.3)] animate-pulse"
+                : "text-white/80 hover:text-white"
                 }`}
               aria-label="Audio Ambience"
+              title={isPlayingAudio ? "Pause Music" : "Play Music"}
             >
               {isPlayingAudio ? <Volume2 size={18} /> : <VolumeX size={18} />}
             </button>
+
+            <audio ref={audioRef} id="bgMusic" loop preload="auto">
+              <source src="/Greenland-chosic.com_.mp3" type="audio/mpeg" />
+            </audio>
 
             <button
               onClick={() => setIsMobileMenuOpen(true)}

@@ -27,11 +27,10 @@ export default function CharacterTimeline() {
             <button
               key={char.id}
               onClick={() => setSelectedChar(char)}
-              className={`px-3.5 py-2 rounded-xl text-[10px] sm:text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
-                selectedChar.id === char.id
-                  ? "bg-[#ff6b00] text-black font-bold"
-                  : "glass-panel text-white/70 hover:text-white"
-              }`}
+              className={`px-3.5 py-2 rounded-xl text-[10px] sm:text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${selectedChar.id === char.id
+                ? "bg-[#ff6b00] text-black font-bold"
+                : "glass-panel text-white/70 hover:text-white"
+                }`}
             >
               {char.name.toUpperCase()}
             </button>
