@@ -85,41 +85,37 @@ export default function CharacterModal({ character, onClose }: ModalProps) {
               <div className="flex items-center gap-2 border-b border-white/10 pb-4 overflow-x-auto">
                 <button
                   onClick={() => setActiveTab("overview")}
-                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
-                    activeTab === "overview"
+                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${activeTab === "overview"
                       ? "bg-[#ff6b00] text-black font-bold"
                       : "text-white/60 hover:text-white"
-                  }`}
+                    }`}
                 >
                   OVERVIEW
                 </button>
                 <button
                   onClick={() => setActiveTab("abilities")}
-                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
-                    activeTab === "abilities"
+                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${activeTab === "abilities"
                       ? "bg-[#ff6b00] text-black font-bold"
                       : "text-white/60 hover:text-white"
-                  }`}
+                    }`}
                 >
                   TECHNIQUES ({character.abilities.length})
                 </button>
                 <button
                   onClick={() => setActiveTab("relationships")}
-                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
-                    activeTab === "relationships"
+                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${activeTab === "relationships"
                       ? "bg-[#ff6b00] text-black font-bold"
                       : "text-white/60 hover:text-white"
-                  }`}
+                    }`}
                 >
                   RELATIONSHIPS
                 </button>
                 <button
                   onClick={() => setActiveTab("gallery")}
-                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
-                    activeTab === "gallery"
+                  className={`px-4 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${activeTab === "gallery"
                       ? "bg-[#ff6b00] text-black font-bold"
                       : "text-white/60 hover:text-white"
-                  }`}
+                    }`}
                 >
                   GALLERY
                 </button>

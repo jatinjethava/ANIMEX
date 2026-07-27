@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Image as ImageIcon, Maximize2, X, Download } from "lucide-react";
+import { Image as ImageIcon, Maximize2, X } from "lucide-react";
 
 const GALLERY_IMAGES = [
   { id: 1, title: "Unlimited Void Domain", anime: "Jujutsu Kaisen", url: "https://i.pinimg.com/control1/1200x/5b/1c/47/5b1c4728e120ac1ab1d37086361f5841.jpg" },
@@ -17,18 +17,18 @@ export default function GallerySection() {
   const [selectedImg, setSelectedImg] = useState<typeof GALLERY_IMAGES[0] | null>(null);
 
   return (
-    <section id="gallery" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="mb-12">
+    <section id="gallery" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+      <div className="mb-8 sm:mb-12">
         <div className="flex items-center gap-2 text-xs font-orbitron text-[#ff6b00] tracking-widest mb-2">
           <ImageIcon size={14} />
           <span>VISUAL ARCHIVE</span>
         </div>
-        <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight">
+        <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl text-white tracking-tight">
           ARTWORK <span className="text-gradient-orange">GALLERY</span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {GALLERY_IMAGES.map((img) => (
           <motion.div
             key={img.id}
@@ -36,22 +36,23 @@ export default function GallerySection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             onClick={() => setSelectedImg(img)}
-            className="group relative rounded-3xl overflow-hidden glass-card h-72 cursor-pointer"
+            className="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-card h-60 sm:h-72 cursor-pointer"
           >
             <img
               src={img.url}
               alt={img.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-between">
+            {/* Overlay visible by default on mobile touch, hover on desktop */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 sm:p-6 flex flex-col justify-between">
               <div className="flex justify-end">
-                <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                  <Maximize2 size={18} />
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
+                  <Maximize2 size={16} />
                 </div>
               </div>
               <div>
                 <span className="text-[10px] font-orbitron text-[#ff6b00]">{img.anime}</span>
-                <h4 className="font-bebas text-2xl text-white">{img.title}</h4>
+                <h4 className="font-bebas text-xl sm:text-2xl text-white">{img.title}</h4>
               </div>
             </div>
           </motion.div>
@@ -66,16 +67,16 @@ export default function GallerySection() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImg(null)}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-6"
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-6"
           >
             <div
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-5xl w-full glass-panel p-4 rounded-3xl space-y-4"
+              className="relative max-w-5xl w-full glass-panel p-3 sm:p-5 rounded-3xl space-y-3 sm:space-y-4"
             >
-              <div className="flex items-center justify-between px-4 pt-2">
+              <div className="flex items-center justify-between px-2 sm:px-4 pt-1">
                 <div>
-                  <h4 className="font-bebas text-3xl text-white">{selectedImg.title}</h4>
-                  <p className="text-xs font-orbitron text-white/50">{selectedImg.anime}</p>
+                  <h4 className="font-bebas text-2xl sm:text-3xl text-white">{selectedImg.title}</h4>
+                  <p className="text-[10px] sm:text-xs font-orbitron text-white/50">{selectedImg.anime}</p>
                 </div>
                 <button
                   onClick={() => setSelectedImg(null)}
@@ -85,8 +86,8 @@ export default function GallerySection() {
                 </button>
               </div>
 
-              <div className="relative rounded-2xl overflow-hidden max-h-[70vh]">
-                <img src={selectedImg.url} alt={selectedImg.title} className="w-full h-full object-contain" />
+              <div className="relative rounded-2xl overflow-hidden max-h-[70vh] flex items-center justify-center">
+                <img src={selectedImg.url} alt={selectedImg.title} className="w-full h-full max-h-[70vh] object-contain rounded-xl" />
               </div>
             </div>
           </motion.div>

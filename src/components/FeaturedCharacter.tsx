@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Shield, Flame, Swords, Radio, Sparkles, Eye } from "lucide-react";
+import { Sparkles, Eye } from "lucide-react";
 import { CHARACTERS, Character } from "@/data/characters";
 
 interface FeaturedProps {
@@ -15,21 +15,21 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
   const [isDomainActive, setIsDomainActive] = useState(false);
 
   return (
-    <section className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+    <section className="relative py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
       {/* Background Kanji Watermark */}
-      <div className="absolute top-1/2 -right-12 -translate-y-1/2 text-white/[0.02] text-[30vw] font-serif font-black pointer-events-none select-none">
+      <div className="absolute top-1/2 -right-12 -translate-y-1/2 text-white/[0.02] text-[25vw] sm:text-[30vw] font-serif font-black pointer-events-none select-none z-0">
         無下限
       </div>
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: Interactive Visual Card */}
         <div className="lg:col-span-6 relative">
           <div
-            className={`relative rounded-3xl overflow-hidden glass-card p-4 transition-all duration-700 ${
+            className={`relative rounded-3xl overflow-hidden glass-card p-3 sm:p-4 transition-all duration-700 ${
               isDomainActive ? "shadow-[0_0_80px_rgba(0,210,255,0.6)] border-[#00d2ff]" : ""
             }`}
           >
-            <div className="relative h-[480px] md:h-[560px] rounded-2xl overflow-hidden">
+            <div className="relative h-[340px] sm:h-[460px] md:h-[540px] rounded-2xl overflow-hidden">
               <img
                 src={featured.wallpaper}
                 alt={featured.name}
@@ -44,14 +44,14 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
               )}
 
               {/* Character Details Overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
-                <span className="text-xs font-orbitron tracking-widest text-[#00d2ff] uppercase">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 bg-gradient-to-t from-black via-black/80 to-transparent">
+                <span className="text-[10px] sm:text-xs font-orbitron tracking-widest text-[#00d2ff] uppercase">
                   {featured.japaneseName} • SPECIAL GRADE
                 </span>
-                <h3 className="font-bebas text-5xl text-white tracking-wider mt-1">
+                <h3 className="font-bebas text-3xl sm:text-5xl text-white tracking-wider mt-1">
                   {featured.name}
                 </h3>
-                <p className="text-sm text-white/70 italic mt-2">
+                <p className="text-xs sm:text-sm text-white/70 italic mt-1 sm:mt-2 line-clamp-2 sm:line-clamp-none">
                   "{featured.quote}"
                 </p>
               </div>
@@ -59,38 +59,38 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
               {/* Domain Expansion Toggle Trigger */}
               <button
                 onClick={() => setIsDomainActive(!isDomainActive)}
-                className={`absolute top-6 right-6 px-4 py-2 rounded-xl text-xs font-orbitron font-bold tracking-widest transition-all ${
+                className={`absolute top-4 right-4 sm:top-6 sm:right-6 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-orbitron font-bold tracking-widest transition-all ${
                   isDomainActive
                     ? "bg-[#00d2ff] text-black shadow-[0_0_25px_#00d2ff]"
                     : "glass-panel text-white hover:bg-white/20"
                 }`}
               >
-                {isDomainActive ? "DOMAIN ACTIVE: UNLIMITED VOID" : "ACTIVATE DOMAIN EXPANSION"}
+                {isDomainActive ? "DOMAIN ACTIVE" : "ACTIVATE DOMAIN"}
               </button>
             </div>
           </div>
         </div>
 
         {/* Right Column: Deep-Dive Controls & Stats */}
-        <div className="lg:col-span-6 space-y-8">
+        <div className="lg:col-span-6 space-y-6 sm:space-y-8">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-xs font-orbitron text-[#ff6b00] tracking-widest">
               <Sparkles size={14} />
               <span>SPOTLIGHT ANALYSIS</span>
             </div>
-            <h2 className="font-bebas text-5xl md:text-6xl text-white tracking-tight">
+            <h2 className="font-bebas text-4xl sm:text-5xl md:text-6xl text-white tracking-tight">
               THE UNTOUCHABLE <span className="text-gradient-orange">HONORED ONE</span>
             </h2>
-            <p className="text-white/70 text-sm md:text-base leading-relaxed">
+            <p className="text-white/70 text-xs sm:text-sm md:text-base leading-relaxed">
               {featured.story}
             </p>
           </div>
 
-          {/* Interactive Navigation Tabs */}
-          <div className="flex items-center gap-3 p-1.5 rounded-2xl glass-panel w-fit">
+          {/* Touch-scrollable Navigation Tabs */}
+          <div className="flex items-center gap-2 p-1.5 rounded-2xl glass-panel w-full sm:w-fit overflow-x-auto no-scrollbar">
             <button
               onClick={() => setActiveTab("domain")}
-              className={`px-5 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all ${
+              className={`px-3.5 sm:px-5 py-2 rounded-xl text-[10px] sm:text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
                 activeTab === "domain" ? "bg-[#ff6b00] text-black font-bold" : "text-white/70 hover:text-white"
               }`}
             >
@@ -98,7 +98,7 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
             </button>
             <button
               onClick={() => setActiveTab("technique")}
-              className={`px-5 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all ${
+              className={`px-3.5 sm:px-5 py-2 rounded-xl text-[10px] sm:text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
                 activeTab === "technique" ? "bg-[#ff6b00] text-black font-bold" : "text-white/70 hover:text-white"
               }`}
             >
@@ -106,7 +106,7 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
             </button>
             <button
               onClick={() => setActiveTab("stats")}
-              className={`px-5 py-2 rounded-xl text-xs font-orbitron tracking-wider transition-all ${
+              className={`px-3.5 sm:px-5 py-2 rounded-xl text-[10px] sm:text-xs font-orbitron tracking-wider transition-all whitespace-nowrap ${
                 activeTab === "stats" ? "bg-[#ff6b00] text-black font-bold" : "text-white/70 hover:text-white"
               }`}
             >
@@ -115,7 +115,7 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
           </div>
 
           {/* Tab Content Panels */}
-          <div className="min-h-[220px]">
+          <div className="min-h-[200px] sm:min-h-[220px]">
             <AnimatePresence mode="wait">
               {activeTab === "domain" && (
                 <motion.div
@@ -123,20 +123,20 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="glass-card p-6 rounded-3xl space-y-4"
+                  className="glass-card p-4 sm:p-6 rounded-3xl space-y-3 sm:space-y-4"
                 >
                   <div className="flex items-center justify-between">
-                    <h4 className="font-bebas text-2xl text-white tracking-wider">
+                    <h4 className="font-bebas text-xl sm:text-2xl text-white tracking-wider">
                       {featured.abilities[0].name}
                     </h4>
-                    <span className="text-xs font-orbitron text-[#00d2ff] border border-[#00d2ff]/30 px-3 py-1 rounded-full bg-[#00d2ff]/10">
+                    <span className="text-[10px] sm:text-xs font-orbitron text-[#00d2ff] border border-[#00d2ff]/30 px-2.5 py-1 rounded-full bg-[#00d2ff]/10">
                       {featured.abilities[0].kanji}
                     </span>
                   </div>
-                  <p className="text-sm text-white/70 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-white/70 leading-relaxed">
                     {featured.abilities[0].description}
                   </p>
-                  <div className="pt-2 flex items-center gap-4 text-xs font-orbitron text-white/50">
+                  <div className="pt-2 flex items-center gap-3 text-[10px] sm:text-xs font-orbitron text-white/50">
                     <span>TYPE: DOMAIN EXPANSION</span>
                     <span>•</span>
                     <span>RANGE: INFINITE</span>
@@ -153,10 +153,10 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
                   className="space-y-3"
                 >
                   {featured.abilities.slice(1).map((ab, idx) => (
-                    <div key={idx} className="glass-card p-4 rounded-2xl">
+                    <div key={idx} className="glass-card p-3.5 sm:p-4 rounded-2xl">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-bebas text-lg text-white">{ab.name}</span>
-                        <span className="text-xs font-orbitron text-[#ff6b00]">{ab.kanji}</span>
+                        <span className="font-bebas text-base sm:text-lg text-white">{ab.name}</span>
+                        <span className="text-[10px] sm:text-xs font-orbitron text-[#ff6b00]">{ab.kanji}</span>
                       </div>
                       <p className="text-xs text-white/60">{ab.description}</p>
                     </div>
@@ -170,11 +170,11 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  className="glass-card p-6 rounded-3xl space-y-4"
+                  className="glass-card p-4 sm:p-6 rounded-3xl space-y-3 sm:space-y-4"
                 >
                   {Object.entries(featured.stats).map(([statName, val]) => (
                     <div key={statName} className="space-y-1">
-                      <div className="flex justify-between text-xs font-orbitron text-white/70 uppercase">
+                      <div className="flex justify-between text-[10px] sm:text-xs font-orbitron text-white/70 uppercase">
                         <span>{statName}</span>
                         <span className="text-[#ff6b00] font-bold">{val} / 100</span>
                       </div>
@@ -194,7 +194,7 @@ export default function FeaturedCharacter({ onOpenCharacterModal }: FeaturedProp
           {/* Action Trigger */}
           <button
             onClick={() => onOpenCharacterModal(featured)}
-            className="glass-button px-8 py-3.5 rounded-2xl font-orbitron text-sm tracking-wider flex items-center gap-3 w-full justify-center"
+            className="glass-button px-6 sm:px-8 py-3.5 rounded-2xl font-orbitron text-xs sm:text-sm tracking-wider flex items-center gap-3 w-full justify-center"
           >
             <Eye size={18} />
             VIEW FULL ARCHIVE LORE

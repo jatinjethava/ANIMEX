@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Film, Award, Sparkles } from "lucide-react";
+import { Film, Award } from "lucide-react";
 
 const STUDIOS = [
   {
@@ -44,18 +44,18 @@ const STUDIOS = [
 
 export default function CollectionsSection() {
   return (
-    <section id="collections" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-      <div className="mb-12">
+    <section id="collections" className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+      <div className="mb-8 sm:mb-12">
         <div className="flex items-center gap-2 text-xs font-orbitron text-[#ff6b00] tracking-widest mb-2">
           <Film size={14} />
           <span>PRODUCTION HOUSES</span>
         </div>
-        <h2 className="font-bebas text-5xl md:text-7xl text-white tracking-tight">
+        <h2 className="font-bebas text-4xl sm:text-6xl md:text-7xl text-white tracking-tight">
           ANIMATION <span className="text-gradient-orange">STUDIOS</span>
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {STUDIOS.map((studio, idx) => (
           <motion.div
             key={idx}
@@ -63,29 +63,29 @@ export default function CollectionsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="glass-card rounded-3xl p-6 relative overflow-hidden group hover:border-[#ff6b00]/50 transition-all flex flex-col justify-between h-96"
+            className="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 relative overflow-hidden group hover:border-[#ff6b00]/50 transition-all flex flex-col justify-between h-80 sm:h-96"
           >
             {/* Background image preview */}
             <div className="absolute inset-0 z-0">
               <img
                 src={studio.image}
                 alt={studio.name}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-20 group-hover:opacity-30"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-25 group-hover:opacity-40"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent" />
             </div>
 
-            <div className="relative z-10 space-y-2">
-              <span className="text-xs font-orbitron text-white/50">{studio.japanese}</span>
-              <h3 className="font-bebas text-3xl text-white group-hover:text-[#ff6b00] transition-colors">
+            <div className="relative z-10 space-y-1.5 sm:space-y-2">
+              <span className="text-[10px] sm:text-xs font-orbitron text-white/50">{studio.japanese}</span>
+              <h3 className="font-bebas text-2xl sm:text-3xl text-white group-hover:text-[#ff6b00] transition-colors">
                 {studio.name}
               </h3>
             </div>
 
-            <div className="relative z-10 space-y-3 pt-6 border-t border-white/10">
+            <div className="relative z-10 space-y-2.5 sm:space-y-3 pt-4 sm:pt-6 border-t border-white/10">
               <div>
-                <span className="text-[10px] font-orbitron text-white/40">FLAGSHIP ANIME</span>
-                <p className="text-xs font-semibold text-white/90">{studio.iconic}</p>
+                <span className="text-[9px] sm:text-[10px] font-orbitron text-white/40">FLAGSHIP ANIME</span>
+                <p className="text-xs font-semibold text-white/90 line-clamp-2">{studio.iconic}</p>
               </div>
 
               <div className="flex items-center justify-between text-xs font-orbitron text-[#ff6b00]">
