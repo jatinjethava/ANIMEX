@@ -48,7 +48,7 @@ export default function CustomCursor() {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50 overflow-hidden">
-      {/* Primary Dot */}
+
       <motion.div
         className="fixed top-0 left-0 w-3 h-3 bg-[#ff6b00] rounded-full shadow-[0_0_15px_#ff6b00]"
         style={{
@@ -61,7 +61,6 @@ export default function CustomCursor() {
         transition={{ scale: { duration: 0.2 } }}
       />
 
-      {/* Trailing Outer Ring */}
       <motion.div
         className="fixed top-0 left-0 w-10 h-10 border border-white/40 rounded-full backdrop-blur-[1px]"
         style={{

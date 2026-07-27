@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Filter } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { CHARACTERS, Character } from "@/data/characters";
 import CharacterCard from "./CharacterCard";
 
@@ -29,7 +29,6 @@ export default function CharacterShowcase({ onOpenModal }: ShowcaseProps) {
 
   return (
     <section id="characters" className="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-      {/* Header */}
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12">
         <div>
           <div className="flex items-center gap-2 text-xs font-orbitron text-[#ff6b00] tracking-widest mb-2">
@@ -41,7 +40,6 @@ export default function CharacterShowcase({ onOpenModal }: ShowcaseProps) {
           </h2>
         </div>
 
-        {/* Filter Category Tabs */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 max-w-full no-scrollbar">
           {CATEGORIES.map((cat) => (
             <button
@@ -59,7 +57,6 @@ export default function CharacterShowcase({ onOpenModal }: ShowcaseProps) {
         </div>
       </div>
 
-      {/* Grid of Character Cards */}
       <motion.div
         layout
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"

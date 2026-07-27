@@ -65,7 +65,6 @@ export default function CollectionsSection() {
             transition={{ duration: 0.4, delay: idx * 0.1 }}
             className="glass-card rounded-2xl sm:rounded-3xl p-5 sm:p-6 relative overflow-hidden group hover:border-[#ff6b00]/50 transition-all flex flex-col justify-between h-80 sm:h-96"
           >
-            {/* Background image preview */}
             <div className="absolute inset-0 z-0">
               <img
                 src={studio.image}

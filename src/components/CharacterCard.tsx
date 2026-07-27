@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Flame, ArrowUpRight, Zap } from "lucide-react";
+import { Flame, ArrowUpRight } from "lucide-react";
 import { Character } from "@/data/characters";
 
 interface CardProps {
@@ -48,7 +48,6 @@ export default function CharacterCard({ character, onOpenModal }: CardProps) {
       }}
       className="group relative glass-card rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 select-none h-[420px] flex flex-col justify-between p-6"
     >
-      {/* Background Image with Ambient Glow */}
       <div className="absolute inset-0 z-0">
         <img
           src={character.portrait}
@@ -58,12 +57,10 @@ export default function CharacterCard({ character, onOpenModal }: CardProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent" />
       </div>
 
-      {/* Kanji Watermark */}
       <div className="absolute top-4 right-4 z-10 text-white/10 text-6xl font-serif font-black pointer-events-none group-hover:text-white/20 transition-colors">
         {character.kanji}
       </div>
 
-      {/* Top Meta Badges */}
       <div className="relative z-10 flex items-center justify-between">
         <span className="text-[10px] font-orbitron px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[#ff6b00] border border-[#ff6b00]/30">
           {character.tier} TIER
@@ -74,7 +71,6 @@ export default function CharacterCard({ character, onOpenModal }: CardProps) {
         </div>
       </div>
 
-      {/* Bottom Character Info */}
       <div className="relative z-10 space-y-3 pt-12">
         <div>
           <span className="text-xs font-orbitron text-white/60 tracking-widest uppercase">
@@ -88,7 +84,6 @@ export default function CharacterCard({ character, onOpenModal }: CardProps) {
           </p>
         </div>
 
-        {/* Power Level Gauge */}
         <div className="pt-2 border-t border-white/10 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Flame size={14} className="text-[#ff6b00]" />

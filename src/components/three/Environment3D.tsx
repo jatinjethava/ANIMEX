@@ -30,9 +30,9 @@ export default function Environment3D({ primaryColor = "#ff6b00" }: EnvironmentP
 
   return (
     <group>
-      {/* Neo-Tokyo Torii Gate Structure */}
+
       <group ref={toriiGroup} position={[0, -0.5, -6]}>
-        {/* Main Pillars */}
+
         <mesh position={[-3.5, 2, 0]}>
           <cylinderGeometry args={[0.2, 0.28, 6, 16]} />
           <meshStandardMaterial color="#181824" roughness={0.3} metalness={0.8} />
@@ -42,7 +42,7 @@ export default function Environment3D({ primaryColor = "#ff6b00" }: EnvironmentP
           <meshStandardMaterial color="#181824" roughness={0.3} metalness={0.8} />
         </mesh>
 
-        {/* Top Glowing Arch */}
+
         <mesh position={[0, 4.8, 0]}>
           <boxGeometry args={[9, 0.35, 0.5]} />
           <meshStandardMaterial
@@ -52,14 +52,14 @@ export default function Environment3D({ primaryColor = "#ff6b00" }: EnvironmentP
           />
         </mesh>
 
-        {/* Lower Crossbar */}
+
         <mesh position={[0, 3.8, 0]}>
           <boxGeometry args={[8, 0.25, 0.35]} />
           <meshStandardMaterial color="#27273a" roughness={0.2} metalness={0.9} />
         </mesh>
       </group>
 
-      {/* Rotating Holographic Magic Rings */}
+
       <group ref={ring1} position={[0, 0, -4]}>
         <mesh>
           <torusGeometry args={[4.5, 0.03, 16, 100]} />
@@ -74,7 +74,7 @@ export default function Environment3D({ primaryColor = "#ff6b00" }: EnvironmentP
         </mesh>
       </group>
 
-      {/* Grid Ground Reflection Plane */}
+
       <gridHelper args={[50, 50, primaryColor, "#1e1e2e"]} position={[0, -4, 0]} />
     </group>
   );

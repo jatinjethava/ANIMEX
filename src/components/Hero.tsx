@@ -23,23 +23,21 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
       id="hero"
       className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-16 md:pt-24 md:pb-12 select-none"
     >
-      {/* Interactive 3D WebGL Background Canvas */}
+
       <Scene3D
         imageSrc={selectedChar.image}
         primaryColor={selectedChar.primaryColor}
         secondaryColor={selectedChar.secondaryColor}
       />
 
-      {/* Massive Background Kanji Watermark */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[0.03] text-[18vw] sm:text-[22vw] lg:text-[25vw] font-serif font-black pointer-events-none select-none z-0">
         {selectedChar.kanji}
       </div>
 
-      {/* Hero Content Grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        {/* Left Column: Character Meta & Typography */}
+
         <div className="lg:col-span-7 flex flex-col justify-center space-y-4 sm:space-y-6 text-left">
-          {/* Anime Badge */}
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,7 +50,6 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
             </span>
           </motion.div>
 
-          {/* Main Title */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -71,7 +68,6 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
             </p>
           </motion.div>
 
-          {/* Quote Block */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -81,7 +77,6 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
             "{selectedChar.quote}"
           </motion.p>
 
-          {/* Stats Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -100,7 +95,6 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
             </div>
           </motion.div>
 
-          {/* Action CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -123,24 +117,21 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
           </motion.div>
         </div>
 
-        {/* Right Column: Featured Character Selector Box */}
         <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center w-full">
           <div className="glass-panel p-4 sm:p-6 rounded-3xl w-full max-w-md space-y-3 sm:space-y-4">
             <h3 className="text-[10px] sm:text-xs font-orbitron text-white/50 tracking-widest uppercase border-b border-white/10 pb-2.5">
               SELECT FEATURED LEGEND
             </h3>
 
-            {/* Horizontal Scroll on Mobile, Vertical Stack on Desktop */}
             <div className="flex lg:flex-col gap-2.5 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 no-scrollbar">
               {featuredList.map((char) => (
                 <div
                   key={char.id}
                   onClick={() => setSelectedChar(char)}
-                  className={`p-2.5 sm:p-3 rounded-2xl cursor-pointer transition-all flex items-center gap-3 sm:gap-4 shrink-0 min-w-[220px] lg:min-w-0 lg:w-full ${
-                    selectedChar.id === char.id
+                  className={`p-2.5 sm:p-3 rounded-2xl cursor-pointer transition-all flex items-center gap-3 sm:gap-4 shrink-0 min-w-[220px] lg:min-w-0 lg:w-full ${selectedChar.id === char.id
                       ? "bg-gradient-to-r from-[#ff6b00]/30 to-[#4f46e5]/30 border border-[#ff6b00] shadow-[0_0_20px_rgba(255,107,0,0.3)]"
                       : "glass-card hover:bg-white/10"
-                  }`}
+                    }`}
                 >
                   <img
                     src={char.portrait}
@@ -163,7 +154,6 @@ export default function Hero({ onOpenCharacterModal }: HeroProps) {
         </div>
       </div>
 
-      {/* Scroll Down Indicator */}
       <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 text-white/40 animate-bounce pointer-events-none">
         <span className="text-[9px] sm:text-[10px] font-orbitron tracking-widest uppercase">
           SCROLL TO EXPLORE

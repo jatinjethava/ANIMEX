@@ -22,7 +22,6 @@ export default function CharacterTimeline() {
           </h2>
         </div>
 
-        {/* Touch Scrollable Character Selector Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 max-w-full no-scrollbar">
           {charactersWithTimeline.map((char) => (
             <button
@@ -40,7 +39,6 @@ export default function CharacterTimeline() {
         </div>
       </div>
 
-      {/* Timeline Steps Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 relative">
         {selectedChar.timelineArcs.map((arc, idx) => (
           <motion.div

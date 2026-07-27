@@ -36,7 +36,6 @@ export default function PowerRanking({ onOpenModal }: RankingProps) {
             onClick={() => onOpenModal(char)}
             className="glass-card p-3.5 sm:p-5 md:p-6 rounded-2xl sm:rounded-3xl flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 cursor-pointer hover:border-[#ff6b00]/60 transition-all group"
           >
-            {/* Rank Number & Avatar */}
             <div className="flex items-center gap-3 sm:gap-6">
               <span className={`font-bebas text-2xl sm:text-4xl w-7 sm:w-10 text-center ${
                 index === 0 ? "text-[#ffd166]" : index === 1 ? "text-slate-300" : index === 2 ? "text-amber-600" : "text-white/40"
@@ -58,7 +57,6 @@ export default function PowerRanking({ onOpenModal }: RankingProps) {
               </div>
             </div>
 
-            {/* Power Meter */}
             <div className="w-full sm:w-1/3 space-y-1 sm:space-y-1.5">
               <div className="flex justify-between text-[10px] sm:text-xs font-orbitron text-white/60">
                 <span>COMBAT POWER</span>
@@ -72,7 +70,6 @@ export default function PowerRanking({ onOpenModal }: RankingProps) {
               </div>
             </div>
 
-            {/* Tier Badge */}
             <div className="flex items-center justify-between sm:justify-end gap-4">
               <span className="text-[10px] sm:text-xs font-orbitron px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#ff6b00]/20 text-[#ff6b00] border border-[#ff6b00]/30 font-bold">
                 {char.tier} TIER

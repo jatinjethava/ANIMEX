@@ -43,7 +43,7 @@ export default function GallerySection() {
               alt={img.title}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
-            {/* Overlay visible by default on mobile touch, hover on desktop */}
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 sm:p-6 flex flex-col justify-between">
               <div className="flex justify-end">
                 <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
@@ -59,7 +59,7 @@ export default function GallerySection() {
         ))}
       </div>
 
-      {/* Lightbox Modal */}
+
       <AnimatePresence>
         {selectedImg && (
           <motion.div

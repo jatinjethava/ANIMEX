@@ -27,7 +27,6 @@ export default function Character3D({
     let isMounted = true;
     const loader = new THREE.TextureLoader();
 
-    // Use our internal server proxy for external HTTP/HTTPS URLs to guarantee open CORS headers for WebGL
     const textureUrl = imageSrc.startsWith("http")
       ? `/api/proxy-image?url=${encodeURIComponent(imageSrc)}`
       : imageSrc;
@@ -41,7 +40,6 @@ export default function Character3D({
       },
       undefined,
       () => {
-        // Fallback to internal proxy of FALLBACK_IMAGE if original URL fails
         loader.load(
           `/api/proxy-image?url=${encodeURIComponent(FALLBACK_IMAGE)}`,
           (fallbackTex) => {
@@ -62,12 +60,10 @@ export default function Character3D({
     const t = clock.getElapsedTime();
 
     if (characterGroup.current) {
-      // Gentle breathing animation
       characterGroup.current.position.y = Math.sin(t * 1.5) * 0.08 - 0.2;
       characterGroup.current.scale.x = 1 + Math.sin(t * 1.5) * 0.01;
       characterGroup.current.scale.y = 1 + Math.cos(t * 1.5) * 0.01;
 
-      // Mouse tracking parallax tilt
       characterGroup.current.rotation.y = THREE.MathUtils.lerp(
         characterGroup.current.rotation.y,
         pointer.x * 0.3,
@@ -93,7 +89,6 @@ export default function Character3D({
 
   return (
     <group ref={characterGroup} position={[0, -0.2, 0]}>
-      {/* Energy Aura Backplane */}
       <mesh ref={auraRef} position={[0, 0.2, -0.2]}>
         <planeGeometry args={[4.2, 5.2]} />
         <meshBasicMaterial
@@ -104,7 +99,6 @@ export default function Character3D({
         />
       </mesh>
 
-      {/* Main Character Texture Card */}
       <mesh position={[0, 0.2, 0]}>
         <planeGeometry args={[3.8, 4.8]} />
         <meshStandardMaterial
@@ -116,9 +110,7 @@ export default function Character3D({
         />
       </mesh>
 
-      {/* Floating Procedural Anime Katana Weapon */}
       <group ref={katanaRef} position={[1.8, 0.2, 0.5]} rotation={[0, 0, 0.4]}>
-        {/* Blade */}
         <mesh position={[0, 1, 0]}>
           <boxGeometry args={[0.04, 2.2, 0.02]} />
           <meshStandardMaterial
@@ -129,12 +121,10 @@ export default function Character3D({
             emissiveIntensity={0.6}
           />
         </mesh>
-        {/* Guard (Tsuba) */}
         <mesh position={[0, -0.1, 0]}>
           <cylinderGeometry args={[0.15, 0.15, 0.03, 16]} />
           <meshStandardMaterial color={primaryColor} metalness={0.8} />
         </mesh>
-        {/* Hilt */}
         <mesh position={[0, -0.5, 0]}>
           <cylinderGeometry args={[0.03, 0.03, 0.7, 16]} />
           <meshStandardMaterial color="#1e1e2e" />

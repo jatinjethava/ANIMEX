@@ -19,7 +19,6 @@ export default function QuotesSection() {
 
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto relative overflow-hidden">
-      {/* Background Kanji Watermark */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/[0.02] text-[20vw] sm:text-[28vw] font-serif font-black pointer-events-none select-none z-0">
         {current.kanji}
       </div>

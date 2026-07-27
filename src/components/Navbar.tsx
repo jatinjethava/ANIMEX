@@ -32,12 +32,11 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-6 md:px-12 py-4 ${
-          isScrolled ? "bg-black/70 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3" : "bg-transparent py-6"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 px-6 md:px-12 py-4 ${isScrolled ? "bg-black/70 backdrop-blur-xl border-b border-white/10 shadow-2xl py-3" : "bg-transparent py-6"
+          }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* Logo */}
+
           <a href="#" className="group flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ff6b00] to-[#4f46e5] p-[1px] shadow-[0_0_20px_rgba(255,107,0,0.4)]">
               <div className="w-full h-full bg-[#050505] rounded-[11px] flex items-center justify-center font-bebas text-xl text-white group-hover:bg-gradient-to-br group-hover:from-[#ff6b00] group-hover:to-[#4f46e5] transition-all">
@@ -54,7 +53,6 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
             </div>
           </a>
 
-          {/* Desktop Nav Links */}
           <nav className="hidden lg:flex items-center gap-8 glass-panel px-8 py-2.5 rounded-full">
             <a href="#hero" className="text-sm font-medium text-white/80 hover:text-[#ff6b00] transition-colors">
               Home
@@ -76,9 +74,8 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
             </a>
           </nav>
 
-          {/* Action Buttons */}
           <div className="flex items-center gap-4">
-            {/* Search Trigger */}
+
             <button
               onClick={() => setIsSearchOpen(true)}
               className="p-2.5 rounded-xl glass-card hover:border-[#ff6b00] text-white/80 hover:text-white transition-all"
@@ -87,18 +84,15 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
               <Search size={18} />
             </button>
 
-            {/* Audio Ambience Toggle */}
             <button
               onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-              className={`p-2.5 rounded-xl glass-card transition-all ${
-                isPlayingAudio ? "border-[#ff6b00] text-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.3)]" : "text-white/80"
-              }`}
+              className={`p-2.5 rounded-xl glass-card transition-all ${isPlayingAudio ? "border-[#ff6b00] text-[#ff6b00] shadow-[0_0_15px_rgba(255,107,0,0.3)]" : "text-white/80"
+                }`}
               aria-label="Audio Ambience"
             >
               {isPlayingAudio ? <Volume2 size={18} /> : <VolumeX size={18} />}
             </button>
 
-            {/* Mobile Drawer Trigger */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="lg:hidden p-2.5 rounded-xl glass-card text-white"
@@ -109,7 +103,6 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
         </div>
       </header>
 
-      {/* Search Modal */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
@@ -144,7 +137,6 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
                 </button>
               </div>
 
-              {/* Search Results List */}
               <div className="mt-4 max-h-96 overflow-y-auto space-y-2 pr-2">
                 {filteredCharacters.map((char) => (
                   <div
@@ -181,7 +173,6 @@ export default function Navbar({ onSelectCharacter }: NavbarProps) {
         )}
       </AnimatePresence>
 
-      {/* Mobile Drawer Navigation */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
